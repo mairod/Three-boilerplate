@@ -39,7 +39,7 @@ class DebugController {
         for (var key in object) {
             if (!object.hasOwnProperty(key)) continue
             let sub = object[key]
-            group.addSlider(sub, 'value', 'range')
+            group.addSlider(sub, 'value', 'range', { label: key})
         }
     }
 }
