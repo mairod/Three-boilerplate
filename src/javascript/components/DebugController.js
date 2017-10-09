@@ -16,7 +16,9 @@ class DebugController {
         name = name.replace(/[\[\]]/g, "\\$&")
         var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
             results = regex.exec(url);
-        return decodeURIComponent(results[2].replace(/\+/g, " ")) === 'true'
+        if(results)
+            return decodeURIComponent(results[2].replace(/\+/g, " ")) === 'true'
+        return false
     }
 
     init(){
@@ -35,11 +37,13 @@ class DebugController {
     }
 
     add_config(object, id){
-        let group = this.panel.addGroup({label : "config " + id})
-        for (var key in object) {
-            if (!object.hasOwnProperty(key)) continue
-            let sub = object[key]
-            group.addSlider(sub, 'value', 'range', { label: key})
+        if(this.active) {
+            let group = this.panel.addGroup({label : "config " + id})
+            for (var key in object) {
+                if (!object.hasOwnProperty(key)) continue
+                let sub = object[key]
+                group.addSlider(sub, 'value', 'range', { label: key})
+            }
         }
     }
 }

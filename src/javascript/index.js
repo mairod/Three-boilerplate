@@ -2,9 +2,9 @@ import ThreeController from './components/ThreeController'
 import DebugController from './components/DebugController'
 import * as TOOLS from './components/tools.class.js'
 
-let Framerate = new TOOLS.FrameRateUI()
+const Framerate = DebugController.active ? new TOOLS.FrameRateUI() : null;
 
-let Three = new ThreeController({
+const Three = new ThreeController({
     container: document.querySelector('#container')
 })
 
@@ -16,8 +16,9 @@ function animate() {
 
     // Updating components
     Three.update()
-    Framerate.update()
 
+    if(Framerate)
+      Framerate.update()
 }
 
 // console.log("YO !");
