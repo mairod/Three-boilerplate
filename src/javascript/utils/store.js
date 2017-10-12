@@ -1,6 +1,7 @@
 const Store = {
 
-    foo: []
+    foo: [],
+    textures: {}
 
 }
 export default Store

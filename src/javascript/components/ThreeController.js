@@ -28,11 +28,9 @@ class ThreeController {
         
         DebugController.register("config", this.config, "THREE controller")
 
-        this.init_loader()
         this.init_environement()
         this.init_camera()
         this.init_event()
-        this.init_loader()
         this.init_dummy()
         this.update()
 

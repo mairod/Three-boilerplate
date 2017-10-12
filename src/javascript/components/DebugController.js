@@ -22,7 +22,6 @@ class DebugController {
     }
 
     init(){
-        console.log('yo')
         this.panel = controlKit.addPanel({
             label: 'debug GUI'
         })
@@ -42,7 +41,11 @@ class DebugController {
             for (var key in object) {
                 if (!object.hasOwnProperty(key)) continue
                 let sub = object[key]
-                group.addSlider(sub, 'value', 'range', { label: key})
+                if (sub.guiType == "color") {
+                    group.addColor(sub, 'value', { colorMode: 'rgbfv' })
+                } else {
+                    group.addSlider(sub, 'value', 'range', { label: key })
+                }
             }
         }
     }
