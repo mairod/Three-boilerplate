@@ -4,7 +4,8 @@ window.STORAGE = {}
 // UI for displaying the frameRate
 export class FrameRateUI {
     constructor(options) {
-        this.options = options
+        this.options = options || new Object
+        this.debug = this.options.debug || true
         this.mainContainer = document.querySelector('body')
         this.subContainer = document.createElement('div')
         this.canvas = document.createElement('canvas')
@@ -17,6 +18,8 @@ export class FrameRateUI {
             graph: []
         }
         this.init()
+        if (!this.debug)
+            this.hide()
     }
     init() {
         this.canvas.width = 150
@@ -144,9 +147,8 @@ export class AudioAnalyzer {
         this.bufferLength
         this.controls = []
         this.init()
-        if (!this.options.debug) {
+        if (!this.debug)
             this.hide()
-        }
     }
     init() {
         this.canvas.width = this.width
